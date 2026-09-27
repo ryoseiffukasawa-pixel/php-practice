@@ -16,14 +16,10 @@ echo '現在時刻は、' . date('Y年m月d日 H時i分s秒') . 'です。' . PH
 // Q4 条件分岐-1 if文
 $device = 'mac';
 
-if ($device === 'windows') {
-    echo '使用OSは、windowsです。';
+if ($device === 'windows' || $device === 'mac') {
+    echo '使用OSは、' . $device . 'です。';
 } else {
-    if ($device === 'mac') {
-        echo '使用OSは、macです。';
-    } else {
-        echo 'どちらでもありません。';
-    }
+    echo 'どちらでもありません。';
 }
 
 echo PHP_EOL;
@@ -68,8 +64,10 @@ echo $prefectures['群馬県'] . PHP_EOL;
 echo $prefectures['茨城県'] . PHP_EOL;
 
 // Q8 連想配列-2
-if (isset($prefectures['埼玉県'])) {
-  echo '埼玉県の県庁所在地は、' . $prefectures['埼玉県'] . 'です。' . PHP_EOL;
+foreach ($prefectures as $prefecture => $capital) {
+    if ($prefecture === '埼玉県') {
+        echo $prefecture . 'の県庁所在地は、' . $capital . 'です。' . PHP_EOL;
+    }
 }
 
 // Q9 連想配列-3
@@ -136,7 +134,7 @@ function evaluateGrade($grade)
       case 'B':
         return '合格です。';
 
-      case 'c':
+      case 'C':
         return '合格ですが追加課題があります。';
 
       case 'D':
